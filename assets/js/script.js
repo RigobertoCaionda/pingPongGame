@@ -7,17 +7,20 @@ let newPlayerPosition = playerCurrentPosition.top;
 
 let ballPosition = ball.getBoundingClientRect();
 let newBallPosition = ballPosition.left;
+let direction = 20;
 function ballMovement(){
 	setInterval(()=>{
-		if(ball.offsetLeft >= 1300){
-			newBallPosition -= 20;
-		}else{
-			newBallPosition += 20; 
+			newBallPosition += direction;
+		if(newBallPosition >= 1300){
+			direction = -20;
+			newBallPosition += direction;
+		}else if(newBallPosition <= 27){
+			direction = 20;
+			newBallPosition += direction;
 		}
 		ball.style.left = `${newBallPosition}px`;
 		console.log(newBallPosition);
-		document.querySelector('#test').value = ball.offsetLeft;
-	},100);
+	},75);
 }
 function playerMovement(event){
 	if(event.keyCode == 38){
